@@ -4,15 +4,58 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Flashcards</title>
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <style>
+        h2 {
+            font-size: 50px;
+            margin-left: 20px;
+            margin-right: 20px;
+            text-align: center;
+        }
+
+        h3 {
+            font-size: 35px;
+            margin-left: 20px;
+            margin-right: 20px;
+            text-align: center;
+            margin-top: 0px;
+            margin-bottom: 0px;
+        }
+
+        button {
+            font-size: 30px;
+            margin-left: 10px;
+        }
+
+        div.box {
+            margin-top: 20px;
+            margin-left: 3px;
+        }
+        
+        div.container {
+            margin-left: 790px;
+        }
+        div.answer
+        {
+            padding-top: 10px;
+            padding-bottom: 20px;
+        }
+    </style>
 </head>
 <body>
     <div id="app">
+        <div class="box">
         <button @click="startgame">start</button>
-        <button v-if="gameon" @click="nextpage">next card</button>
+    </div>
         <h2 v-if="gameon">{{ cards[kazu].word }}</h2>
-        <button v-if="gameon" @click="answer">see answer</button>
+        <div class="answer">
         <h3 v-if="seeanswer" >{{cards[kazu].answer}}</h3>
         </div>
+        <div class="container">
+            <button v-if="gameon" @click="nextpage">next card</button>
+            <button v-if="gameon" @click="answer">show answer</button>
+        </div>
+        <h2 v-if="gameend">end of card. press start again too restart</h2>
+    </div>
     <script src="app.js"></script>
     
 </body>

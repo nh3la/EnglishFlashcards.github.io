@@ -2,6 +2,7 @@ const app = Vue.createApp({
     data(){
         return{
             gameon: false,
+            gameend: false,
             temp: { word: null, answer: null, num: null},
             //temp2: null,
             flippage: false,
@@ -41,6 +42,7 @@ const app = Vue.createApp({
         startgame(){
             this.gameon = true
             this.kazu = 0
+            this.gameend = false
             for(let i = 0; i < 25; i++){
             this.cards[i].num = Math.random() * 10000
             //console.log(this.cards[i].num)
@@ -72,17 +74,22 @@ const app = Vue.createApp({
 
         nextpage(){
             this.flippage = true
-            for(let i = 0; i < 25; i++) {
+            //for(let i = 0; i < 25; i++) {
                 if (this.flippage) {
                     //this.kazu = this.cards[i + 1].num
-                    this.kazu = this.kazu + 1
+                    if(this.kazu == 24){
+                        this.gameend = true
+                    }
+                    else {
+                        this.kazu = this.kazu + 1
+                    }
                     //console.log(this.kazu)
                    // this.cards[i + 1].num
                    
                     this.flippage = false
                     this.seeanswer = false
                 }
-            }
+            //}
             
         },
 
