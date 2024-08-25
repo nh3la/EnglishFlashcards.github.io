@@ -1,0 +1,19 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flashcards</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+</head>
+<body>
+    <div id="app">
+        <button @click="startgame">start</button>
+        <button v-if="gameon" @click="nextpage">next card</button>
+        <h2 v-if="gameon">{{ cards[kazu].word }}</h2>
+        <button v-if="gameon" @click="answer">see answer</button>
+        <h3 v-if="seeanswer" >{{cards[kazu].answer}}</h3>
+        </div>
+    <script src="app.js"></script>
+    
+</body>
+</html>
