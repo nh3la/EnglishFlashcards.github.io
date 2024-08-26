@@ -36,7 +36,7 @@
         }
         div.answer
         {
-            padding-top: 10px;
+            padding-top: 3px;
             padding-bottom: 20px;
         }
     </style>
@@ -46,13 +46,14 @@
         <div class="box">
         <button @click="startgame">start</button>
     </div>
-        <h2 v-if="gameon">{{ cards[kazu].word }}</h2>
+    <h4 v-if="gameon == false">press word to do to next card</h4>
+        <h2 v-if="gameon" @click="answer">{{ cards[kazu].word }}</h2>
         <div class="answer">
         <h3 v-if="seeanswer" >{{cards[kazu].answer}}</h3>
         </div>
         <div class="container">
+            <button v-if="gameon" @click="backpage">previous card</button>
             <button v-if="gameon" @click="nextpage">next card</button>
-            <button v-if="gameon" @click="answer">show answer</button>
         </div>
         <h2 v-if="gameend">end of card. press start again too restart</h2>
     </div>

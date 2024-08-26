@@ -42,7 +42,9 @@ const app = Vue.createApp({
         startgame(){
             this.gameon = true
             this.kazu = 0
+            this.flippage = false
             this.gameend = false
+            this.seeanswer = false
             for(let i = 0; i < 25; i++){
             this.cards[i].num = Math.random() * 10000
             //console.log(this.cards[i].num)
@@ -91,6 +93,18 @@ const app = Vue.createApp({
                 }
             //}
             
+        },
+        backpage(){
+            this.flippage = true
+            if(this.kazu == 0){
+                this.kazu = 0
+            }
+            else{
+            this.kazu = this.kazu - 1
+            }
+            //console.log(this.kazu)
+            this.flippage = false
+            this.seeanswer = false
         },
 
         answer(){
