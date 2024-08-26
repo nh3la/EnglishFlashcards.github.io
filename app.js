@@ -8,6 +8,16 @@ const app = Vue.createApp({
             flippage: false,
             kazu: null,
             seeanswer: false,
+            wordadd: false,
+            numin: 23,
+            counter: 0,
+            vocab: [{ word: null, answer: null, num: null},
+                { word: null, answer: null, num: null},
+                { word: null, answer: null, num: null},
+                { word: null, answer: null, num: null},
+                { word: null, answer: null, num: null},
+            ],
+            button: false,
             //order: [null, null, null, null, null, null],
             cards: [
                 { word: 'assure', answer: '～保障する', num: 0},
@@ -30,30 +40,30 @@ const app = Vue.createApp({
                 { word: 'desperate', answer: '必死の、絶望的な', num: 17},
                 { word: 'consistent', answer: '矛盾のない、一致した', num: 18},
                 { word: 'fond', answer: 'Aが好きだ', num: 19},
-                { word: 'union', answer: '組合', num: 20},
-                { word: 'trait', answer: '特徴', num: 21},
-                { word: 'ritual', answer: '儀式', num: 22},
-                { word: 'conservation', answer: '環境保護', num: 23},
-                { word: 'emission', answer: '排出', num: 24},
+                { word: 'trait', answer: '特徴', num: 20},
+                { word: 'ritual', answer: '儀式', num: 21},
+                { word: 'conservation', answer: '環境保護', num: 22},
+                { word: 'emission', answer: '排出', num: 23},
             ]
         }
     },
     methods: {
         startgame(){
+            this.button = true
             this.gameon = true
             this.kazu = 0
             this.flippage = false
             this.gameend = false
             this.seeanswer = false
-            for(let i = 0; i < 25; i++){
+            for(let i = 0; i < this.numin + 1; i++){
             this.cards[i].num = Math.random() * 10000
             //console.log(this.cards[i].num)
             }
             //console.log('lalala')
 
-            for(let i = 0; i < 24; i++){
+            for(let i = 0; i < this.numin; i++){
                  
-                for(let j = 0; j < 24; j++){
+                for(let j = 0; j < this.numin; j++){
                     if (this.cards[j].num > this.cards[j + 1].num) {
                         this.temp = this.cards[j]
                         this.cards[j] = this.cards[j + 1]
@@ -63,7 +73,7 @@ const app = Vue.createApp({
             }
         }
 
-        for(let i = 0; i < 25; i++){
+        for(let i = 0; i < this.numin + 1; i++){
             this.cards[i].num = i
         }
         this.kazu = this.cards[0].num
@@ -76,11 +86,12 @@ const app = Vue.createApp({
 
         nextpage(){
             this.flippage = true
-            //for(let i = 0; i < 25; i++) {
+            //for(let i = 0; i < this.numin + 1; i++) {
                 if (this.flippage) {
                     //this.kazu = this.cards[i + 1].num
-                    if(this.kazu == 24){
+                    if(this.kazu == this.numin){
                         this.gameend = true
+                        this.button = false
                     }
                     else {
                         this.kazu = this.kazu + 1
@@ -109,6 +120,20 @@ const app = Vue.createApp({
 
         answer(){
             this.seeanswer = !this.seeanswer
+        },
+
+        addword(){
+            this.wordadd = true
+
+
+        },
+        integrateword(){
+            this.numin = this.numin + 1
+            this.vocab[this.counter].num = this.numin
+            this.cards.push(this.vocab[this.counter])
+            //console.log(this.cards)
+            this.wordadd = false
+            this.counter = this.counter + 1
         }
     }
 })
