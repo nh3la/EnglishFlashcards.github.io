@@ -51,25 +51,7 @@
         <button @click="startgame">start</button>
     </div>
     <button :disabled="button" @click="addword">add word</button>
-    <li v-if="gameon == false || gameend" v-for="card in cards">
-        {{ card.word }}
-      </li>
-</div>
-<div v-if="gameon == false" class="explantation">
-    <h5>you can temporarily add words meaning that if you close or refresh this page, you will not be able to view the added words.<br>
-        you can only add up to 5 words.<br> Love you yura !
-    </h5>
-</div>
-        <h2 v-if="gameon && gameend == false" @click="answer">{{ cards[kazu].word }}</h2>
-        <div class="answer">
-        <h3 v-if="seeanswer" >{{ cards[kazu].answer }}</h3>
-        </div>
-        <div class="container">
-            <button v-if="gameon && gameend == false" @click="backpage">previous card</button>
-            <button v-if="gameon && gameend == false" @click="nextpage">next card</button>
-        </div>
-        <h2 v-if="gameend">end of card. press start again to play</h2>
-        <div v-if="wordadd" class="bar">
+    <div v-if="wordadd" class="bar">
         <div v-if="wordadd">
             <h5>word</h5>
             <input type="text" required v-model="vocab[counter].word">
@@ -80,6 +62,25 @@
         </div>
         <button v-if="wordadd" @click="integrateword">complete</button>
     </div>
+    <div v-if="gameon == false" class="explantation">
+        <h5>you can temporarily add words meaning that if you close or refresh this page, you will not be able to view the added words.<br>
+            you can only add up to 5 words.<br> Love you yura !
+        </h5>
+    </div>
+    <li v-if="gameon == false || gameend" v-for="card in cards">
+        {{ card.word }}
+      </li>
+</div>
+        <h2 v-if="gameon && gameend == false" @click="answer">{{ cards[kazu].word }}</h2>
+        <div class="answer">
+        <h3 v-if="seeanswer" >{{ cards[kazu].answer }}</h3>
+        </div>
+        <div class="container">
+            <button v-if="gameon && gameend == false" @click="backpage">previous card</button>
+            <button v-if="gameon && gameend == false" @click="nextpage">next card</button>
+        </div>
+        <h2 v-if="gameend">end of card. press start again to play</h2>
+    
     </div>
     <script src="app.js"></script>
     
