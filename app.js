@@ -102,7 +102,7 @@ const app = Vue.createApp({
                 { word: 'federal', answer: '連邦', num: 79},
                 { word: 'harsh', answer: '厳しい', num: 80},
                 { word: 'random', answer: '無作為な', num: 81},
-                { word: 'adolescent', answer: '排出', num: 82},
+                { word: 'adolescent', answer: '思春期の', num: 82},
                 { word: 'up-to-date', answer: '最新の', num: 83},
                 { word: 'liberal', answer: '自由主義の', num: 84},
                 { word: 'prior to', answer: '前の', num: 85},
