@@ -42,6 +42,9 @@
         div.explantation {
             font-size: 14px;
         }
+        div.cardword{
+            font-size: 21px;
+        }
     </style>
 </head>
 <body>
@@ -67,9 +70,22 @@
             you can only add up to 5 words.<br> Love you yura !
         </h5>
     </div>
+    <h4 v-if="gameon == false || gameend">word list (tap the word to delete word from list)</h4>
+  <ul>
     <li v-if="gameon == false || gameend" v-for="card in cards">
+     <div v-if="card.show" @click="hideword(card)" class="cardword">
         {{ card.word }}
+    </div>
       </li>
+    </ul>
+    <h4 v-if="gameon == false || gameend">hidden word (tap again to add word to list)</h4>
+    <ul>
+    <li v-if="gameon == false || gameend" v-for="hiddencard in hiddencards">
+     <div v-if="hiddencard.show == false" @click="hiddenword(hiddencard)" class="cardword">
+        {{ hiddencard.word }}
+    </div>
+      </li>
+    </ul>
 </div>
         <h2 v-if="gameon && gameend == false" @click="answer">{{ cards[kazu].word }}</h2>
         <div class="answer">
