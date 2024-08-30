@@ -4,12 +4,10 @@ const app = Vue.createApp({
             gameon: false,
             gameend: false,
             temp: { word: null, answer: null, num: null, show: null},
-            //temp2: null,
             flippage: false,
             kazu: null,
             seeanswer: false,
             wordadd: false,
-            //numin: 99,
             numin1: 99,
             counter: 0,
             vocab: [{ word: null, answer: null, num: null, show: true},
@@ -20,10 +18,8 @@ const app = Vue.createApp({
             ],
             button: false,
             shownum: 0,
-            //order: [null, null, null, null, null, null],
             counter1: 0,
             counter2: 0,
-            //temp1: 0,
             hiddencards: [],
             temp2: { word: null, answer: null, num: null, show: null },
             temp3: { word: null, answer: null, num: null, show: null },
@@ -141,9 +137,7 @@ const app = Vue.createApp({
             this.seeanswer = false
             for(let i = 0; i < this.numin1 + 1; i++){
             this.cards[i].num = Math.random() * 10000
-            //console.log(this.cards[i].num)
             }
-            //console.log('lalala')
 
             for(let i = 0; i < this.numin1; i++){
                  
@@ -153,26 +147,19 @@ const app = Vue.createApp({
                         this.cards[j] = this.cards[j + 1]
                         this.cards[j + 1] = this.temp
                     }
-
-            }
+                }
         }
 
         for(let i = 0; i < this.numin1 + 1; i++){
             this.cards[i].num = i
         }
         this.kazu = this.cards[0].num
-        //console.log(this.kazu)
-            
-        
-        //console.log(this.cards[0].num, this.cards[1].num, this.cards[2].num, this.cards[3].num, this.cards[4].num, this.cards[5].num) 
-        //console.log(this.gameon)
         },
 
         nextpage(){
             this.flippage = true
-            //for(let i = 0; i < this.numin + 1; i++) {
+  
                 if (this.flippage) {
-                    //this.kazu = this.cards[i + 1].num
                     if(this.kazu == this.numin1){
                         this.gameend = true
                         this.button = false
@@ -180,13 +167,11 @@ const app = Vue.createApp({
                     else {
                         this.kazu = this.kazu + 1
                     }
-                    //console.log(this.kazu)
-                   // this.cards[i + 1].num
+                   
                    
                     this.flippage = false
                     this.seeanswer = false
                 }
-            //}
             
         },
         backpage(){
@@ -197,7 +182,7 @@ const app = Vue.createApp({
             else{
             this.kazu = this.kazu - 1
             }
-            //console.log(this.kazu)
+
             this.flippage = false
             this.seeanswer = false
         },
@@ -215,7 +200,6 @@ const app = Vue.createApp({
             this.numin1 = this.numin1 + 1
             this.vocab[this.counter].num = this.numin1
             this.cards.push(this.vocab[this.counter])
-            //console.log(this.cards)
             this.wordadd = false
             this.counter = this.counter + 1
         },
@@ -225,53 +209,23 @@ const app = Vue.createApp({
             for(let i = this.temp2.num + 1; i < this.numin1 + 1; i++){
                     this.cards[i].num = this.cards[i].num - 1
                     }
-            //console.log(card.num)
-            //if(this.temp2.num == this.numin1) {
-                //this.cards.splice(this.numin1, 1)
-                //this.hiddencards.push(this.temp2)
-            //}
-            //else{
-                  
-                //console.log(this.temp2)
                 this.cards.splice(this.temp2.num, 1)
                 this.hiddencards.push(this.temp2)
-                //console.log(this.temp2.num)
-                //console.log(this.cards[this.temp2.num])
-               
-            //} 
             this.numin1 = this.numin1 - 1
             this.hiddencards[this.counter1].num = this.counter1
-            
-            //console.log(this.hiddencards[this.counter1])
                 this.counter1 = this.counter1 + 1
-                //console.log(this.cards[this.temp3])
-                //console.log(this.cards[this.temp3 - 1])
-                //console.log(this.cards[this.temp3 + 1])
-                //console.log(this.cards[this.temp3 + 2])
-                //console.log(this.cards[this.temp3 + 3])
-                //console.log(this.hiddencards[1])
-                //console.log(card.num)
-                //console.log(this.cards[card.num])
-                //console.log(this.cards[card.num + 1])
-                //console.log(this.cards[card.num + 2])
-                //console.log(this.cards[card.num + 3])
-                //console.log(this.cards[card.num + 4])
         },
         hiddenword(hiddencard){
             hiddencard.show = true
             this.temp3 = hiddencard
-            //console.log(this.hiddencards[1])
             for(let i = this.temp3.num + 1; i < this.counter1; i++){
                 this.hiddencards[i].num = this.hiddencards[i].num - 1
                 }
             this.hiddencards.splice(this.temp3.num, 1)
             this.cards.push(this.temp3)
-            //console.log(this.hiddencards[1])
             this.numin1 = this.numin1 + 1
             this.counter1 = this.counter1 - 1
             this.cards[this.numin1].num = this.numin1
-            //console.log(this.hiddencards[1])
-            //console.log(this.cards[this.numin1])
         }
     }
 })
